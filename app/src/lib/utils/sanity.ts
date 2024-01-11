@@ -18,7 +18,7 @@ export const client = createClient({
 
 export async function getPosts(): Promise<Post[]> {
 	return await client.fetch(
-		groq`*[_type == "post" && defined(slug.current)] | order(_createdAt desc)`
+		groq`*[_type == "work" && defined(slug.current)] | order(_createdAt desc)`
 	);
 }
 
