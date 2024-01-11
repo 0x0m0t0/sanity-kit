@@ -29,7 +29,10 @@ const hiddenDocTypes = (listItem: ListItemBuilder) => {
   ].includes(id)
 }
 
-export const structure: StructureResolver = (S, context) =>
+export const structure: StructureResolver = (
+  S,
+  context // !!! DEVCHECK
+) =>
   S.list()
     .title('Structure')
     .items([
