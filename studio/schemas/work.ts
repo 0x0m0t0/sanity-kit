@@ -1,10 +1,15 @@
 import {defineField, defineType} from 'sanity'
 
-export default defineType({
-  name: 'post',
-  title: 'Post',
+export default defineField({
+  name: 'work',
+  title: 'Work',
   type: 'document',
   fields: [
+    defineField({
+      name: 'orderRank',
+      type: 'string',
+      hidden: true,
+    }),
     defineField({
       name: 'title',
       title: 'Title',
