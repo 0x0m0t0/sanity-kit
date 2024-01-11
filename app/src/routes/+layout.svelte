@@ -1,4 +1,7 @@
 
+<svelte:head>
+	<title>TIIIIT</title>
+</svelte:head>
 
 <div class="container">
 	<header class="header">
