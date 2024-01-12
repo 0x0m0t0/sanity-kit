@@ -2,6 +2,7 @@
 	import { PortableText } from '@portabletext/svelte';
 	import { formatDate } from '$lib/utils';
 	import { urlFor } from '$lib/utils/image';
+	import ResImage from '../../../components/ResImage.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -14,6 +15,15 @@
 			src={urlFor(data.mainImage).url()}
 			alt="Cover image for {data.title}"
 		/>
+
+	<div class='w-full'>
+		<ResImage image={data.mainImage} sizes={"(max-width: 600px) 480px, 80vw"}
+			alt={data.title ? data.title : "Cover image"} />
+
+		<!-- // (max-width: 600px) 480px, 800px -->
+
+	</div>
+
 	{:else}
 		<div class="post__cover--none" />
 	{/if}

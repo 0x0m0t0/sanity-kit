@@ -8,6 +8,7 @@
 
 <section>
 	<h1>Title page hello</h1>
+
 	{#if data.posts.length}
 		{#each data.posts as post}
 			<Card {post} />

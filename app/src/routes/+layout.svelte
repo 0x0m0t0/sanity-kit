@@ -1,4 +1,8 @@
 
+<script>
+	  import "../tailwind.css";
+</script>
+
 <svelte:head>
 	<title>TIIIIT</title>
 </svelte:head>

@@ -1,9 +1,11 @@
 import { getPosts } from '$lib/utils/sanity';
+import { client } from '$lib/utils/sanity';
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
+import groq from 'groq';
 
 export const load = (async () => {
-	const posts = await getPosts();
+	const posts = await client.fetch(QUERY);
 
 	if (posts) {
 		return {
@@ -13,3 +15,5 @@ export const load = (async () => {
 
 	throw error(404, 'Not found');
 }) satisfies PageLoad;
+
+const QUERY = groq`*[_type == "work" && defined(slug.current)] | order(orderRank) `;
