@@ -44,6 +44,40 @@ export default defineField({
       title: 'Body',
       type: 'blockContent',
     }),
+    defineField({
+      name: 'images',
+      title: 'Images',
+      type: 'array',
+      of: [
+        {
+          name: 'image',
+          type: 'image',
+          title: 'Image',
+          options: [{accept: '.webp, .jpg, .jpeg'}],
+          validation: (Rule) => Rule.required(), // custom inputs needed for validation
+          fields: [
+            {
+              name: 'caption',
+              title: 'Caption',
+              type: 'string',
+            },
+          ],
+          preview: {
+            select: {
+              caption: 'caption',
+              media: 'asset',
+            },
+            prepare({caption, media}) {
+              return {
+                title: caption ? caption : 'image.000',
+                media: media,
+              }
+            },
+          },
+        },
+      ],
+      validation: (Rule) => Rule.required().min(1),
+    }),
   ],
   preview: {
     select: {

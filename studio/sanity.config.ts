@@ -3,6 +3,7 @@ import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
 import {schemaTypes} from './schemas'
 import {structure} from './desk'
+import {media} from 'sanity-plugin-media'
 // import {structureTool} from 'sanity/structure'  // !!! DEVCHECK
 
 export const projectId = process.env.SANITY_STUDIO_PROJECT_ID!
@@ -13,7 +14,7 @@ export default defineConfig({
   title: 'Sanity Kit',
   projectId,
   dataset,
-  plugins: [deskTool({structure}), visionTool()],
+  plugins: [deskTool({structure}), visionTool(), media()],
   schema: {
     types: schemaTypes,
   },
