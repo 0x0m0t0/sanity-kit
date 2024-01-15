@@ -1,16 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-  	import type { PageData } from './$types';
 
-  	import 'keen-slider/keen-slider.min.css'
-  	import KeenSlider from 'keen-slider'
+  import 'keen-slider/keen-slider.min.css'
+  import KeenSlider from 'keen-slider'
+  import ResImage from './ResImage.svelte';
 
-  	export let image: any;
+
+  export let images: any;
+  // export let image: any;
   	
 	let slider: any;
 
   onMount(() => {
-  
 	function WheelControls(slider) {
         var touchTimeout
         var position
@@ -96,8 +97,12 @@
 <div id="my-keen-slider" class="keen-slider">
 	
 
-	{#each data.posts as post}
-	<div class="keen-slider__slide number-slide1">1</div>
+	{#each images as image}
+	<div class="keen-slider__slide">
+
+    <ResImage image={image} sizes={"(max-width: 600px) 480px, 80vw"}
+    alt={image.caption ? image.caption : "Cover image"} />
+  </div>
 	{/each}
 
   </div>

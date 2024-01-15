@@ -6,6 +6,7 @@ export const ssr = false;
 
 export const load = (async ({ params }) => {
 	const post = await getPost(params.slug);
+	console.log(post);
 	if (post) return post;
 
 	throw error(404, 'Not found');
