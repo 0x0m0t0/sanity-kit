@@ -6,12 +6,8 @@
 	import ResImage from '../../../components/ResImage.svelte';
 	import type { PageData } from './$types';
 
-
 	export let data: PageData;
-
-
 </script>
-
 
 <section class="post">
 	{#if data.mainImage}
@@ -21,18 +17,9 @@
 			alt="Cover image for {data.title}"
 		/>
 
-	<div class='w-full'>
-
-	<!-- <ResImage image={data.mainImage} sizes={"(max-width: 600px) 480px, 80vw"}
-			alt={data.title ? data.title : "Cover image"} /> -->
-
-<Carousel images={data.images} />
-
-		<!-- // (max-width: 600px) 480px, 800px -->
-
-
-	</div>
-
+		<div class="w-full">
+			<Carousel images={data.images} />
+		</div>
 	{:else}
 		<div class="post__cover--none" />
 	{/if}
@@ -43,7 +30,11 @@
 			{formatDate(data._createdAt)}
 		</p>
 		<div class="post__content">
-			<PortableText value={data.body} />
+			{#if data.body !== null || data.body !== undefined}
+				<PortableText value={data.body} />
+			{:else}
+				{null}
+			{/if}
 		</div>
 	</div>
 </section>

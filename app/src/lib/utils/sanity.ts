@@ -36,4 +36,5 @@ export interface Post {
 	excerpt?: string;
 	mainImage?: ImageAsset;
 	body: PortableTextBlock[];
+	images: ImageAsset[];
 }
