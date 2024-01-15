@@ -19,7 +19,8 @@
 
         function dispatch(e, name) {
           position.x -= e.deltaX
-          position.y -= e.deltaY
+          // position.y -= e.deltaY
+          position.y = 0;
           slider.container.dispatchEvent(
             new CustomEvent(name, {
               detail: {
@@ -46,19 +47,40 @@
           dispatch(e, "ksDragEnd")
         }
 
+        // function eventWheel(e) {
+        //   e.preventDefault()
+        //   if (!wheelActive) {
+        //     wheelStart(e)
+        //     wheelActive = true
+        //   }
+        //   wheel(e)
+        //   clearTimeout(touchTimeout)
+        //   touchTimeout = setTimeout(() => {
+        //     wheelActive = false
+        //     wheelEnd(e)
+        //   }, 50)
+        // }
+
+
         function eventWheel(e) {
-          e.preventDefault()
-          if (!wheelActive) {
-            wheelStart(e)
-            wheelActive = true
-          }
-          wheel(e)
-          clearTimeout(touchTimeout)
-          touchTimeout = setTimeout(() => {
-            wheelActive = false
-            wheelEnd(e)
-          }, 50)
-        }
+  // Check if the scroll is primarily along the X-axis
+  if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+    e.preventDefault(); // Prevent the default behavior only for X-axis scrolling
+    if (!wheelActive) {
+      wheelStart(e);
+      wheelActive = true;
+    }
+    wheel(e);
+    clearTimeout(touchTimeout);
+    touchTimeout = setTimeout(() => {
+      wheelActive = false;
+      wheelEnd(e);
+    }, 50);
+  }
+}
+
+
+        
 
         slider.on("created", () => {
           slider.container.addEventListener("wheel", eventWheel, {
