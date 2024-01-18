@@ -24,7 +24,7 @@ export default defineConfig({
     media(),
     documentInternationalization({
       supportedLanguages: i18n.languages,
-      schemaTypes: ['work'],
+      schemaTypes: ['blog'],
     }),
     // !!! FORDEV
     schemaVisualizer({
