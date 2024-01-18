@@ -13,7 +13,3 @@ export default defineStructure((S, context) =>
     icon: () => '📝',
   })
 )
-
-// export default defineStructure((S) =>
-//   S.listItem().title(TITLE).schemaType(ID).child(S.editor().schemaType(ID).documentId(ID))
-// )
