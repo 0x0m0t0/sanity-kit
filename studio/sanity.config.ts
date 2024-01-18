@@ -34,5 +34,21 @@ export default defineConfig({
   ],
   schema: {
     types: schemaTypes,
+    templates: (prev) => {
+      const prevFiltered = prev.filter((template) => template.id !== 'blog')
+
+      return [
+        ...prevFiltered,
+        {
+          id: 'blog-language',
+          title: 'Blog with Language',
+          schemaType: 'blog',
+          parameters: [{name: 'language', type: 'string'}],
+          value: (params: {language: string}) => ({
+            language: params.language,
+          }),
+        },
+      ]
+    },
   },
 })

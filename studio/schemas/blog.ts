@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import {i18n} from '../languages'
 
 export default defineField({
   name: 'blog',
@@ -74,6 +75,12 @@ export default defineField({
     //   ],
     //   validation: (Rule) => Rule.required().min(1),
     // }),
+
+    defineField({
+      name: 'language',
+      type: 'string',
+      readOnly: true,
+    }),
   ],
   preview: {
     select: {
