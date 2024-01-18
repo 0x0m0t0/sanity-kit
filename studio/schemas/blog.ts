@@ -7,6 +7,11 @@ export default defineField({
   type: 'document',
   fields: [
     defineField({
+      name: 'language',
+      type: 'string',
+      readOnly: true,
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
@@ -75,12 +80,6 @@ export default defineField({
     //   ],
     //   validation: (Rule) => Rule.required().min(1),
     // }),
-
-    defineField({
-      name: 'language',
-      type: 'string',
-      readOnly: true,
-    }),
   ],
   preview: {
     select: {
