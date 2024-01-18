@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Card from '../components/Card.svelte';
-	import Welcome from '../components/Welcome.svelte';
+	import Card from '../lib/components/Card.svelte';
+	import Welcome from '../lib/components/Welcome.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;

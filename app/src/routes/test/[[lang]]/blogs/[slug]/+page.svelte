@@ -2,8 +2,6 @@
 	import { PortableText } from '@portabletext/svelte';
 	import { formatDate } from '$lib/utils';
 	import { urlFor } from '$lib/utils/image';
-	import Carousel from '../../../lib/components/Carousel.svelte';
-	import ResImage from '../../../lib/components/ResImage.svelte';
 	import type { PageData } from './$types';
 	import interdit from '$lib/images/interdit.jpg';
 
@@ -17,10 +15,6 @@
 			src={urlFor(data.mainImage).url()}
 			alt="Cover image for {data.title}"
 		/>
-
-		<div class="w-full">
-			<Carousel images={data.images} />
-		</div>
 	{:else}
 		<div class="post__cover--none" />
 	{/if}
@@ -30,12 +24,5 @@
 		<p class="post__date">
 			{formatDate(data._createdAt)}
 		</p>
-		<div class="post__content">
-			{#if data.body !== null || data.body !== undefined}
-				<PortableText value={data.body} />
-			{:else}
-				{null}
-			{/if}
-		</div>
 	</div>
 </section>
