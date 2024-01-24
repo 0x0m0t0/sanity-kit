@@ -5,7 +5,19 @@
 	import type { PageData } from './$types';
 	import interdit from '$lib/images/interdit.jpg';
 
+	import { workLang } from '$lib/stores/stores';
+	function changeLang(lang: string) {
+		workLang.set(lang);
+	}
+
+	let language: string;
+	workLang.subscribe((value) => {
+		language = value;
+	});
+
 	export let data: PageData;
+	console.log('hahaha');
+	console.log('data', data);
 </script>
 
 <section class="post">
@@ -25,4 +37,5 @@
 			{formatDate(data._createdAt)}
 		</p>
 	</div>
+	<a class="card__link" href={`/test/${language}/blogs/spanish`}> redirect </a>
 </section>

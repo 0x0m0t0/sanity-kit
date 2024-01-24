@@ -7,10 +7,18 @@ import type { PageLoad } from './$types';
 import groq from 'groq';
 
 export const load = (async ({ params: { lang } }) => {
-	const posts = await client.fetch(
-		groq`*[_type == "blog" && language==$lang  && defined(slug.current)] | order(orderRank)`,
-		{ lang: lang }
-	);
+	let posts;
+
+	if (!lang) {
+		posts = await client.fetch(
+			groq`*[_type == "blog" && language=="en"  && defined(slug.current)] | order(orderRank)`
+		);
+	} else {
+		posts = await client.fetch(
+			groq`*[_type == "blog" && language==$lang  && defined(slug.current)] | order(orderRank)`,
+			{ lang: lang }
+		);
+	}
 
 	if (posts) {
 		return {
