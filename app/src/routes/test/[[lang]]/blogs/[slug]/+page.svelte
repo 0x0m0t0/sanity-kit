@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { PortableText } from '@portabletext/svelte';
+	import { onMount } from 'svelte';
 	import { formatDate } from '$lib/utils';
 	import { urlFor } from '$lib/utils/image';
 	import type { PageData } from './$types';
@@ -11,12 +12,18 @@
 	}
 
 	let language: string;
-	workLang.subscribe((value) => {
+	// Subscribe to the workLang store
+	const unsubscribe = workLang.subscribe((value) => {
 		language = value;
 	});
 
+	// Ensure to unsubscribe when the component is destroyed
+	onMount(() => {
+		return unsubscribe;
+	});
 	export let data: PageData;
-	console.log('hahaha');
+	$: matchingLanguageObject = data.otherLang.find((item) => item.language === language);
+	console.log('matchingLanguageObject', matchingLanguageObject);
 	console.log('data', data);
 </script>
 
@@ -37,5 +44,7 @@
 			{formatDate(data._createdAt)}
 		</p>
 	</div>
-	<a class="card__link" href={`/test/${language}/blogs/spanish`}> redirect </a>
+	<a class="card__link" href={`/test/${language}/blogs/${matchingLanguageObject.slug.current}`}>
+		redirect
+	</a>
 </section>

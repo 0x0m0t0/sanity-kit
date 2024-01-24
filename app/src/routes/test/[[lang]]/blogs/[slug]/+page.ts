@@ -59,7 +59,7 @@ export const load: PageLoad = async ({ params: { lang, slug } }) => {
 
 		// Merge the additional data into the original post
 		const finalPost = { ...post, otherLang };
-
+		console.log('finalPost', finalPost);
 		return finalPost;
 	} catch (err) {
 		throw error(500, 'Internal Server Error');
