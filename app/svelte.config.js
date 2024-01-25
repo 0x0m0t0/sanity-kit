@@ -15,14 +15,14 @@ const config = {
 		// If your environment is not supported or you settled on a specific environment, switch out the adapter.
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter(),
-		csp: {
-			directives: {
-				'script-src': ['self']
-			}
-			// reportOnly: {
-			// 	'script-src': ['self']
-			// }
-		},
+		// csp: {
+		// 	directives: {
+		// 		'script-src': ['self']
+		// 	}
+		// 	// reportOnly: {
+		// 	// 	'script-src': ['self']
+		// 	// }
+		// },
 
 		alias: {
 			$components: path.resolve('src/components'),
