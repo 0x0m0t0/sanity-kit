@@ -4,7 +4,6 @@
 	import { formatDate } from '$lib/utils';
 	import { urlFor } from '$lib/utils/image';
 	import type { PageData } from './$types';
-	import interdit from '$lib/images/interdit.jpg';
 
 	import { workLang } from '$lib/stores/stores';
 	function changeLang(lang: string) {

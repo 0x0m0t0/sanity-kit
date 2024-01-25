@@ -1,4 +1,5 @@
 <script lang="ts">
+	import LangSwitch from './LangSwitch.svelte';
 	const LINKS = [
 		{ name: 'Home', href: '/' },
 		{ name: 'About', href: '/about' },
@@ -11,4 +12,6 @@
 	{#each LINKS as { name, href }, i}
 		<a {href} class="text-sm text-gray hover:text-blue hover:bg-gray mr-2 last:mr-0">{name}</a>
 	{/each}
+
+	<LangSwitch />
 </nav>

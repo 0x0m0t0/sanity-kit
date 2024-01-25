@@ -1,8 +1,8 @@
 <script>
 	import '../tailwind.css';
-	import Nav from '../lib/components/Nav.svelte';
-	import Footer from '../lib/components/Footer.svelte';
-	import LangSwitch from '../lib/components/LangSwitch.svelte';
+	import Nav from '../components/Nav.svelte';
+	import Footer from '../components/Footer.svelte';
+	import LangSwitch from '../components/LangSwitch.svelte';
 </script>
 
 <svelte:head>
@@ -11,7 +11,6 @@
 
 <div class="min-h-screen flex flex-col">
 	<header class="header">
-		<LangSwitch />
 		<Nav />
 	</header>
 	<main class="flex-grow">
