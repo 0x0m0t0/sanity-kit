@@ -3,8 +3,8 @@
 	const LINKS = [
 		{ name: 'Home', href: '/' },
 		{ name: 'About', href: '/about' },
-		{ name: 'Test', href: '/test' }
-		// { name: 'Contact', href: '/contact' },
+		{ name: 'Test', href: '/test' },
+		{ name: 'Blog', href: '/test/blogs' }
 	];
 </script>
 
