@@ -1,8 +1,7 @@
 <script>
 	import '../tailwind.css';
-	import Nav from '../components/Nav.svelte';
-	import Footer from '../components/Footer.svelte';
-	import LangSwitch from '../components/LangSwitch.svelte';
+	import Nav from '$components/global/Nav.svelte';
+	import Footer from '$components/Footer.svelte';
 </script>
 
 <svelte:head>

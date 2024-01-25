@@ -1,13 +1,16 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { urlFor } from '$lib/utils/image';
 	import type { PageData } from './$types';
 	export let data: PageData;
+
+	const lang = $page.params.lang ? $page.params.lang : 'en';
 </script>
 
 <p>BLOG</p>
 
 <section>
-	<span>{$page.params.lang}</span>
+	<span>{lang}</span>
 
 	{#if data.posts.length}
 		{#each data.posts as post}
@@ -24,7 +27,10 @@
 
 				<div class="card__container">
 					<h3 class="card__title">
-						<a class="card__link" href={`/test/${$page.params.lang}/blogs/${post.slug.current}`}>
+						<!-- <a class="card__link" href={`/test/${$page.params.lang}/blogs/${post.slug.current}`}>
+							{post.title}
+						</a> -->
+						<a class="card__link" href={`/${lang}/blogs/${post.slug.current}`}>
 							{post.title}
 						</a>
 					</h3>

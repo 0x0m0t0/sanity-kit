@@ -1,10 +1,9 @@
 <script lang="ts">
-	import LangSwitch from './LangSwitch.svelte';
+	import LangSwitch from '../LangSwitch.svelte';
 	const LINKS = [
 		{ name: 'Home', href: '/' },
 		{ name: 'About', href: '/about' },
-		{ name: 'Test', href: '/test' },
-		{ name: 'Blog', href: '/test/blogs' }
+		{ name: 'Blog', href: '/blogs' }
 	];
 </script>
 
