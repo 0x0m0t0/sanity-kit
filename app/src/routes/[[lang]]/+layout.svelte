@@ -1,5 +1,5 @@
 <script>
-	import '../tailwind.css';
+	import '$src/tailwind.css';
 	import Nav from '$components/global/Nav.svelte';
 	import Footer from '$components/Footer.svelte';
 </script>

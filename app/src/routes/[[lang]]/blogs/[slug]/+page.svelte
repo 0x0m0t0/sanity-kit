@@ -1,39 +1,16 @@
 <script lang="ts">
 	import { PortableText } from '@portabletext/svelte';
-	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
 	import { formatDate } from '$lib/utils';
 	import { urlFor } from '$lib/utils/image';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-	import { workLang } from '$lib/stores/stores';
-
-	function changeLang(lang: string) {
-		workLang.set(lang);
-	}
-
-	let language: string;
-	let matchingLanguageObject;
-
-	// Subscribe to the workLang store
-	const unsubscribe = workLang.subscribe((value) => {
-		language = value;
-		// Update matchingLanguageObject here
-		matchingLanguageObject = data.otherLang.find((item) => item.language === language);
-	});
-
-	// Ensure to unsubscribe when the component is destroyed
-	onMount(() => {
-		return unsubscribe;
-	});
-
-	// $: matchingLanguageObject = data.otherLang.find((item) => item.language === language);
-	console.log('matchingLanguageObject', matchingLanguageObject);
-
-	// console.log('page', $page);
-	// console.log('data', data);
+	import workLang from '$lib/stores/stores';
+	import { currentSlug } from '$lib/stores/stores';
 </script>
+
+<p>slug: {$currentSlug}</p>
+<p>lang: {$workLang}</p>
 
 <section class="post">
 	{#if data.mainImage}
@@ -52,7 +29,4 @@
 			{formatDate(data._createdAt)}
 		</p>
 	</div>
-	<a class="card__link" href={`/${language}/blogs/${matchingLanguageObject.slug.current}`}>
-		redirect
-	</a>
 </section>

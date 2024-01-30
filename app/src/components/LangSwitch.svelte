@@ -1,28 +1,23 @@
 <script lang="ts">
-	import { workLang } from '$lib/stores/stores';
+	import workLang from '$lib/stores/stores';
+	import { currentSlug } from '$lib/stores/stores';
+	import { goto } from '$app/navigation';
 	import { derived } from 'svelte/store';
 	let options = [];
 	export let disabled = false;
 	const id = `select-${Math.floor(Math.random() * 1000000)}`;
 
-	let language: string = 'en';
-	export let value: string = language.toUpperCase();
+	export let value: string = $workLang.toUpperCase();
 
 	function changeLang(lang: string) {
 		workLang.set(lang.toLowerCase());
-		language = lang;
 	}
 
-	workLang.subscribe((value) => {
-		language = value;
-	});
-
-	const filteredOptions = derived(workLang, ($workLang) => {
-		const language = $workLang || 'en'; // Default to 'en' if workLang is not set
+	const filteredOptions = derived(workLang, ($workLang = 'en') => {
 		const uniqueOptions = Array.from(
 			new Set(
 				[
-					{ value: language.toUpperCase() },
+					{ value: $workLang.toUpperCase() },
 					{ value: 'EN' },
 					{ value: 'FR' },
 					{ value: 'ES' },
@@ -34,10 +29,20 @@
 	});
 
 	$: options = [...$filteredOptions];
+
+	function updateOptions(e) {
+		const lang = e.toLowerCase();
+		if (lang) {
+			goto(`/${lang}${$currentSlug}`);
+		} else {
+			goto(`/${lang}`);
+		}
+	}
 </script>
 
-<div class="flex">
-	<p>current language {language}</p>
+<div class="flex flex-col">
+	<p>current language {$currentSlug}</p>
+	<p>current language {$workLang}</p>
 
 	<select
 		{id}
@@ -45,7 +50,7 @@
 		{disabled}
 		on:change={(e) => {
 			changeLang(e.target.value);
-			// updateOptions();
+			updateOptions(e.target.value);
 		}}
 	>
 		{#each options as option}

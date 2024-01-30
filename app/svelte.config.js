@@ -32,7 +32,8 @@ const config = {
 			$stores: path.resolve('/src/stores'),
 			$styles: path.resolve('/src/styles'),
 			$svg: path.resolve('/src/svg'),
-			$utils: path.resolve('/src/utils')
+			$utils: path.resolve('/src/utils'),
+			$src: path.resolve('/src/')
 		}
 	}
 };

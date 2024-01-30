@@ -2,10 +2,14 @@
 	import { formatDate } from '$lib/utils';
 	import { urlFor } from '$lib/utils/image';
 	import type { Post } from '$lib/utils/sanity';
+	import workLang from '$lib/stores/stores';
+
+	$: slug = $workLang === 'en' ? '' : '/' + $workLang;
 
 	export let post: Post;
 </script>
 
+<p>{slug}</p>
 <div class="card">
 	{#if post.mainImage}
 		<img
@@ -19,7 +23,7 @@
 
 	<div class="card__container">
 		<h3 class="card__title">
-			<a class="card__link" href={`/post/${post.slug.current}`}>
+			<a class="card__link" href={`${slug}/post/${post.slug.current}`}>
 				{post.title}
 			</a>
 		</h3>
