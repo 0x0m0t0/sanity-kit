@@ -3,10 +3,35 @@
 	import { formatDate } from '$lib/utils';
 	import { urlFor } from '$lib/utils/image';
 	import type { PageData } from './$types';
-
-	export let data: PageData;
+	import { derived } from 'svelte/store';
+	import { get } from 'svelte/store';
 	import workLang from '$lib/stores/stores';
 	import { currentSlug } from '$lib/stores/stores';
+	export let data: PageData;
+
+	// $: {
+	// 	const matchingLanguageObject = data.otherLang.find((item) => item.language === $workLang);
+
+	// 	if (matchingLanguageObject !== undefined) {
+	// 		currentSlug.set(`/blogs/${matchingLanguageObject.slug.current}`);
+	// 	} else if (matchingLanguageObject === undefined) {
+	// 		currentSlug.set(``);
+	// 	}
+	// }
+	const derivedCurrentSlug = derived([workLang, currentSlug], ([workLang, currentSlug]) => {
+		const matchingLanguageObject = data.otherLang.find((item) => item.language === workLang);
+		if (matchingLanguageObject) {
+			return `/blogs/${matchingLanguageObject.slug.current}`;
+		} else {
+			return '';
+		}
+	});
+
+	$: {
+		currentSlug.set($derivedCurrentSlug as string);
+	}
+
+	console.log(data.otherLang);
 </script>
 
 <p>slug: {$currentSlug}</p>

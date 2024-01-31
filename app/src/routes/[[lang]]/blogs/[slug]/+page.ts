@@ -2,9 +2,6 @@ import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 import groq from 'groq';
 import { client } from '$lib/utils/sanity';
-import { getBlog } from '$lib/utils/sanity';
-import { page } from '$app/stores';
-import { get } from 'svelte/store';
 import { currentSlug } from '$lib/stores/stores';
 import workLang from '$lib/stores/stores';
 
@@ -39,20 +36,14 @@ export const load: PageLoad = async ({ params: { lang, slug } }) => {
 
 		let matchingLanguageObject;
 
-		// const [otherLang] = await Promise.all([otherLangPromise]);
-
 		workLang.subscribe((value) => {
 			matchingLanguageObject = otherLang.find((item) => item.language === value);
-			currentSlug.subscribe(() => {
-				if (matchingLanguageObject !== undefined) {
-					currentSlug.set(`/blogs/${matchingLanguageObject.slug.current}`);
-				} else if (matchingLanguageObject === undefined) {
-					currentSlug.set(``);
-				}
-			});
 
-			console.log('otherlang', otherLang);
-			console.log('matchingLanguageObject', matchingLanguageObject);
+			if (matchingLanguageObject !== undefined) {
+				currentSlug.set(`/blogs/${matchingLanguageObject.slug.current}`);
+			} else if (matchingLanguageObject === undefined) {
+				currentSlug.set(``);
+			}
 		});
 
 		// Merge the additional data into the original post

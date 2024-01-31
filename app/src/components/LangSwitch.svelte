@@ -32,12 +32,15 @@
 
 	function updateOptions(e) {
 		const lang = e.toLowerCase();
-		if (lang) {
+		if (lang === $workLang) {
 			goto(`/${lang}${$currentSlug}`);
 		} else {
 			goto(`/${lang}`);
 		}
 	}
+
+	console.log('currentSlug', $currentSlug);
+	console.log('workLang', $workLang);
 </script>
 
 <div class="flex flex-col">

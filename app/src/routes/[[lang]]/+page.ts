@@ -3,11 +3,18 @@ import { getPosts } from '$lib/utils/sanity';
 import { client } from '$lib/utils/sanity';
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
+import { currentSlug } from '$lib/stores/stores';
 import groq from 'groq';
+import workLang from '$lib/stores/stores';
+
+export const ssr = false;
 
 export const load = (async ({ params }) => {
-	// console.log('initialValue', initialValue);
 	const posts = await client.fetch(QUERY);
+
+	workLang.subscribe((value) => {
+		currentSlug.set('/');
+	});
 
 	if (posts) {
 		return {

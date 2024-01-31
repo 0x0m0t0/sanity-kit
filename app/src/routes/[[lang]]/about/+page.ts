@@ -7,12 +7,7 @@ import groq from 'groq';
 import { currentSlug } from '$lib/stores/stores';
 
 export const load = (async ({ params }) => {
-	// console.log('initialValue', initialValue);
 	const posts = await client.fetch(QUERY);
-
-	currentSlug.subscribe(() => {
-		currentSlug.set(``);
-	});
 
 	if (posts) {
 		return {
