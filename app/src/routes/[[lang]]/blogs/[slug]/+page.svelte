@@ -3,22 +3,23 @@
 	import { formatDate } from '$lib/utils';
 	import { urlFor } from '$lib/utils/image';
 	import type { PageData } from './$types';
+	import { page } from '$app/stores';
 
 	export let data: PageData;
-	import workLang from '$lib/stores/stores';
-	import { currentSlug } from '$lib/stores/stores';
+	console.log('pagedata', data);
+	let currentSlug;
+
+	$: {
+		currentSlug = data && data.localizedSlugs ? data.localizedSlugs[$page.params.lang] : undefined;
+	}
 </script>
 
-<p>slug: {$currentSlug}</p>
-<p>lang: {$workLang}</p>
+<p>slug: {currentSlug}</p>
+<p>lang: {$page.params.lang}</p>
 
-<section class="post">
+<!-- <section class="post">
 	{#if data.mainImage}
-		<img
-			class="post__cover"
-			src={urlFor(data.mainImage).url()}
-			alt="Cover image for {data.title}"
-		/>
+		<img class="post__cover" src={urlFor(data.mainImage).url()} alt="Cover for {data.title}" />
 	{:else}
 		<div class="post__cover--none" />
 	{/if}
@@ -29,4 +30,4 @@
 			{formatDate(data._createdAt)}
 		</p>
 	</div>
-</section>
+</section> -->

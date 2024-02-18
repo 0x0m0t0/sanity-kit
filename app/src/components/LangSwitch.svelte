@@ -1,60 +1,44 @@
 <script lang="ts">
-	import workLang from '$lib/stores/stores';
-	import { currentSlug } from '$lib/stores/stores';
+	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { derived } from 'svelte/store';
-	let options = [];
+	import { localizedSlugs } from '$lib/stores/stores';
+
 	export let disabled = false;
 	const id = `select-${Math.floor(Math.random() * 1000000)}`;
 
-	export let value: string = $workLang.toUpperCase();
+	// List of supported languages
+	const languages = ['en', 'fr', 'es', 'pt'];
 
-	function changeLang(lang: string) {
-		workLang.set(lang.toLowerCase());
-	}
+	let currentLang = $page.params.lang || 'en';
 
-	const filteredOptions = derived(workLang, ($workLang = 'en') => {
-		const uniqueOptions = Array.from(
-			new Set(
-				[
-					{ value: $workLang.toUpperCase() },
-					{ value: 'EN' },
-					{ value: 'FR' },
-					{ value: 'ES' },
-					{ value: 'PT' }
-				].map((option) => option.value)
-			)
-		);
-		return uniqueOptions.map((value) => ({ value }));
-	});
+	// Function to switch the language
+	function switchLanguage(lang) {
+		// Get the localized slug for the new language
+		//
+		//
+		const slug = $localizedSlugs[lang];
 
-	$: options = [...$filteredOptions];
+		// Navigate to the new URL
 
-	function updateOptions(e) {
-		const lang = e.toLowerCase();
-		if (lang) {
-			goto(`/${lang}${$currentSlug}`);
+		if (slug) {
+			goto('/' + lang + slug);
 		} else {
-			goto(`/${lang}`);
+			goto('/' + lang);
 		}
 	}
 </script>
 
 <div class="flex flex-col">
-	<p>current language {$currentSlug}</p>
-	<p>current language {$workLang}</p>
-
 	<select
 		{id}
-		bind:value
+		bind:value={currentLang}
 		{disabled}
 		on:change={(e) => {
-			changeLang(e.target.value);
-			updateOptions(e.target.value);
+			switchLanguage(e.target.value);
 		}}
 	>
-		{#each options as option}
-			<option>{option.value}</option>
+		{#each languages as lang}
+			<option value={lang}>{lang}</option>
 		{/each}
 	</select>
 </div>
