@@ -4,7 +4,8 @@
 	import type { PageData } from './$types';
 	export let data: PageData;
 
-	const lang = $page.params.lang ? $page.params.lang : 'en';
+	let lang: string;
+	$: lang = $page.params.lang || 'en';
 </script>
 
 <section>

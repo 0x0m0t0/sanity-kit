@@ -14,7 +14,8 @@
 	// Function to switch the language
 	function switchLanguage(lang) {
 		// Get the localized slug for the new language
-
+		//
+		//
 		const slug = $localizedSlugs[lang];
 
 		// Navigate to the new URL

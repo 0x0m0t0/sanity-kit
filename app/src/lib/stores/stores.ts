@@ -23,3 +23,5 @@ export const currentSlug = writable<string>('');
 // import { writable } from 'svelte/store';
 
 export const localizedSlugs = writable({});
+
+export const isSwitching = writable(false);
