@@ -10,7 +10,7 @@
 <section>
 	<p>slug {$currentSlug}</p>
 	<h1>Title page hello</h1>
-	<p>{$storageLang}</p>
+	<p>test v1.2</p>
 	{#if data.posts.length}
 		{#each data.posts as post}
 			<Card {post} />
