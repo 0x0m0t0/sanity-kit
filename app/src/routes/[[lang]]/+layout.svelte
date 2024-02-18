@@ -5,13 +5,14 @@
 </script>
 
 <svelte:head>
-	<title>TIIIIT</title>
+	<title>Portfolio i18n</title>
 </svelte:head>
 
 <div class="min-h-screen flex flex-col">
 	<header class="header">
 		<Nav />
 	</header>
+
 	<main class="flex-grow">
 		<slot />
 	</main>

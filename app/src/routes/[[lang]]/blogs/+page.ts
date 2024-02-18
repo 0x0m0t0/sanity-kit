@@ -1,30 +1,41 @@
-import { getPosts } from '$lib/utils/sanity';
-import { get } from 'svelte/store';
-import { client } from '$lib/utils/sanity';
-import { page } from '$app/stores';
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 import groq from 'groq';
+import { client } from '$lib/utils/sanity';
+import { localizedSlugs } from '$lib/stores/stores';
+import { browser } from '$app/environment';
 
-export const load = (async ({ params: { lang } }) => {
-	let posts;
+export const ssr = false;
 
-	if (!lang) {
-		posts = await client.fetch(
-			groq`*[_type == "blog" && language=="en"  && defined(slug.current)] | order(orderRank)`
+export const load: PageLoad = async ({ params: { lang } }) => {
+	try {
+		const posts = await client.fetch(
+			groq`*[_type == "blog" && language==$lang] | order(orderRank)`,
+			{
+				lang: lang
+			}
 		);
-	} else {
-		posts = await client.fetch(
-			groq`*[_type == "blog" && language==$lang  && defined(slug.current)] | order(orderRank)`,
-			{ lang: lang }
-		);
-	}
 
-	if (posts) {
+		if (!posts) {
+			throw error(404, 'Not found');
+		}
+
+		const otherLang = ['en', 'fr', 'es', 'pt'];
+
+		console.log('otherlang', otherLang);
+		const localizedSlugsData = {};
+		otherLang.forEach((item) => {
+			localizedSlugsData[item] = `/blogs`;
+		});
+
+		if (browser) {
+			localizedSlugs.set(localizedSlugsData);
+		}
+
 		return {
 			posts
 		};
+	} catch (err) {
+		throw error(500, 'Internal Server Error');
 	}
-
-	throw error(404, 'Not found');
-}) satisfies PageLoad;
+};

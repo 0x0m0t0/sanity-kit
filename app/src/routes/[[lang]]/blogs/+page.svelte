@@ -7,11 +7,7 @@
 	const lang = $page.params.lang ? $page.params.lang : 'en';
 </script>
 
-<p>BLOG</p>
-
 <section>
-	<span>{lang}</span>
-
 	{#if data.posts.length}
 		{#each data.posts as post}
 			<div class="card">
@@ -27,9 +23,6 @@
 
 				<div class="card__container">
 					<h3 class="card__title">
-						<!-- <a class="card__link" href={`/test/${$page.params.lang}/blogs/${post.slug.current}`}>
-							{post.title}
-						</a> -->
 						<a class="card__link" href={`/${lang}/blogs/${post.slug.current}`}>
 							{post.title}
 						</a>
@@ -39,6 +32,6 @@
 			</div>
 		{/each}
 	{:else}
-		<p>"nothing"</p>
+		<p>"No blog posts yet."</p>
 	{/if}
 </section>

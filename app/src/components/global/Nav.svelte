@@ -1,10 +1,18 @@
 <script lang="ts">
-	import LangSwitch from '../LangSwitch.svelte';
-	const LINKS = [
-		{ name: 'Home', href: '/' },
-		{ name: 'About', href: '/about' },
-		{ name: 'Blog', href: '/blogs' }
-	];
+	import { page } from '$app/stores';
+	import LangSwitch from '$components/LangSwitch.svelte';
+
+	let lang;
+	let LINKS = [];
+
+	$: {
+		const lang = $page.params.lang || 'en';
+		LINKS = [
+			{ name: 'Home', href: `/${lang}` },
+			{ name: 'About', href: `/${lang}/about` },
+			{ name: 'Blog', href: `/${lang}/blogs` }
+		];
+	}
 </script>
 
 <nav class="w-full flex justify-center" aria-label={'Primary navigation'}>
