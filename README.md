@@ -1,6 +1,15 @@
+## VERY MUCH A WORK IN PROGRESS
+Any input, feedback or upgrades are greatly appreciated.
+
 # A minimal SvelteKit site with Sanity Studio
 
+Sanity + Sveltekit starter with DIY i18n
+
+Using the Sanity team starter as base [https://github.com/sanity-io/sanity-template-sveltekit-clean](https://github.com/sanity-io/sanity-template-sveltekit-clean)
+
 This starter uses [SvelteKit](https://kit.svelte.dev/) for the frontend and [Sanity](https://sanity.io/) to handle its content.
+
+
 
 ## Featuring
 
