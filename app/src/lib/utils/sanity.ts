@@ -32,20 +32,6 @@ export async function getPost(slug: string): Promise<Post> {
 		slug
 	});
 }
-export async function getBlog(lang: string): Promise<Post> {
-	return await client.fetch(
-		groq`*[_type == "blog" && language==$lang && body[0]._key=="9118afad3be1"][0]`,
-		{
-			// slug,
-			lang
-		}
-		// groq`*[_type == "blog" && language==$lang && slug.current == $slug][0]`,
-		// {
-		// 	slug,
-		// 	lang
-		// }
-	);
-}
 
 export interface Post {
 	_type: 'post';

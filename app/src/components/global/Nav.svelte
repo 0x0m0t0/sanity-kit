@@ -16,7 +16,7 @@
 		const lang = $page.params.lang || 'en';
 		LINKS = [
 			{ name: 'Home', href: `/${lang}` },
-			{ name: 'About', href: `/${lang}/${about[lang]}` },
+			{ name: 'About', href: `/${lang}/page/${about[lang]}` },
 			{ name: 'Blog', href: `/${lang}/blogs` }
 		];
 	}
