@@ -1,4 +1,5 @@
 import { error } from '@sveltejs/kit';
+import { languages } from '$lib/i18n/languages';
 import type { PageLoad } from './$types';
 import groq from 'groq';
 import { client } from '$lib/utils/sanity';
@@ -20,11 +21,8 @@ export const load: PageLoad = async ({ params: { lang } }) => {
 			throw error(404, 'Not found');
 		}
 
-		const otherLang = ['en', 'fr', 'es', 'pt'];
-
-		console.log('otherlang', otherLang);
 		const localizedSlugsData = {};
-		otherLang.forEach((item) => {
+		languages.forEach((item) => {
 			localizedSlugsData[item] = `/blogs`;
 		});
 

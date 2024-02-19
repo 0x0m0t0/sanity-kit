@@ -1,8 +1,8 @@
 import defineStructure from '../../../utils/defineStructure'
 import {i18n} from './../../../languages'
 
-const ID = 'blog'
-const TITLE = 'Blogs'
+const ID = 'about'
+const TITLE = 'About'
 
 export default defineStructure((S, context) =>
   S.listItem()
@@ -24,8 +24,8 @@ export default defineStructure((S, context) =>
                   .filter(`_type == "${ID}" && language == $language`)
                   .params({language: language.id})
                   .initialValueTemplates([
-                    S.initialValueTemplateItem('blog-language', {
-                      id: 'blog-language',
+                    S.initialValueTemplateItem('about-language', {
+                      id: 'about-language',
                       language: language.id,
                     }),
                   ])
@@ -58,7 +58,7 @@ export default defineStructure((S, context) =>
 
             .child(
               S.documentList()
-                .id(`all-blogs`)
+                .id(`all-about`)
                 .title(`All ${TITLE}`)
                 .schemaType(ID)
                 .filter(`_type == "${ID}"`)

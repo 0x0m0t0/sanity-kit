@@ -12,7 +12,7 @@ if (!PUBLIC_SANITY_PROJECT_ID || !PUBLIC_SANITY_DATASET) {
 export const client = createClient({
 	projectId: PUBLIC_SANITY_PROJECT_ID,
 	dataset: PUBLIC_SANITY_DATASET,
-	useCdn: false, // `false` if you want to ensure fresh data
+	useCdn: true, // `false` if you want to ensure fresh data
 	apiVersion: '2023-03-20' // date of setup
 });
 
@@ -31,20 +31,6 @@ export async function getPost(slug: string): Promise<Post> {
 	return await client.fetch(groq`*[_type == "work" && slug.current == $slug][0]`, {
 		slug
 	});
-}
-export async function getBlog(lang: string): Promise<Post> {
-	return await client.fetch(
-		groq`*[_type == "blog" && language==$lang && body[0]._key=="9118afad3be1"][0]`,
-		{
-			// slug,
-			lang
-		}
-		// groq`*[_type == "blog" && language==$lang && slug.current == $slug][0]`,
-		// {
-		// 	slug,
-		// 	lang
-		// }
-	);
 }
 
 export interface Post {

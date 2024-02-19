@@ -5,7 +5,6 @@
 	import Carousel from '$components/Carousel.svelte';
 	import ResImage from '$components/ResImage.svelte';
 	import type { PageData } from './$types';
-	import interdit from '$lib/images/interdit.jpg';
 
 	export let data: PageData;
 </script>
