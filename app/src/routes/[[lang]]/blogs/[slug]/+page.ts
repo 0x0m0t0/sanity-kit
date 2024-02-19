@@ -42,7 +42,6 @@ export const load: PageLoad = async ({ params: { lang, slug } }) => {
 		if (browser) {
 			localizedSlugs.set(localizedSlugsData);
 		}
-
 		return finalPost;
 	} catch (err) {
 		throw error(500, 'Internal Server Error');

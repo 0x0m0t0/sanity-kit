@@ -1,42 +1,36 @@
-import { getPosts } from '$lib/utils/sanity';
-// import { initialValue } from '$lib/stores/stores'; // fetch data from sanity lang
-import { client } from '$lib/utils/sanity';
 import { error } from '@sveltejs/kit';
+import { languages } from '$lib/i18n/languages';
 import type { PageLoad } from './$types';
 import groq from 'groq';
-import workLang from '$lib/stores/stores';
-import { currentSlug } from '$lib/stores/stores';
+import { client } from '$lib/utils/sanity';
+import { localizedSlugs } from '$lib/stores/stores';
+import { browser } from '$app/environment';
 
 export const ssr = false;
 
-export const load = (async ({ params: { lang } }) => {
-	let posts;
-
-	let lango = 'en';
-	workLang.subscribe((value) => {
-		lango = value;
-		currentSlug.set(`/about`);
-	});
-
-	if (lango !== lang) {
-		posts = await client.fetch(groq`*[_type == "about" && language==$lang] | order(orderRank)`, {
+export const load: PageLoad = async ({ params: { lang } }) => {
+	try {
+		const posts = await client.fetch(groq`*[_type == "about" && language==$lang][0]`, {
 			lang: lang
 		});
-	} else if (lango === lang) {
-		posts = await client.fetch(groq`*[_type == "about" && language==$lango] | order(orderRank)`, {
-			lango: lango
-		});
-	} else {
-		posts = await client.fetch(
-			groq`*[_type == "about" && language=="en"  && defined(slug.current)]  | order(orderRank)`
-		);
-	}
 
-	if (posts) {
+		if (!posts) {
+			throw error(404, 'Not found');
+		}
+
+		const localizedSlugsData = {};
+		languages.forEach((item) => {
+			localizedSlugsData[item] = `/blogs`;
+		});
+
+		if (browser) {
+			localizedSlugs.set(localizedSlugsData);
+		}
+
 		return {
 			posts
 		};
+	} catch (err) {
+		throw error(500, 'Internal Server Error');
 	}
-
-	throw error(404, 'Not found');
-}) satisfies PageLoad;
+};

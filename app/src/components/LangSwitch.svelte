@@ -2,24 +2,19 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { localizedSlugs } from '$lib/stores/stores';
+	import { languages } from '$lib/i18n/languages';
 
 	export let disabled = false;
 	const id = `select-${Math.floor(Math.random() * 1000000)}`;
-
-	// List of supported languages
-	const languages = ['en', 'fr', 'es', 'pt'];
 
 	let currentLang = $page.params.lang || 'en';
 
 	// Function to switch the language
 	function switchLanguage(lang) {
 		// Get the localized slug for the new language
-		//
-		//
 		const slug = $localizedSlugs[lang];
 
 		// Navigate to the new URL
-
 		if (slug) {
 			goto('/' + lang + slug);
 		} else {

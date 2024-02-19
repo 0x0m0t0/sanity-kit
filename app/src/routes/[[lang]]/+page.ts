@@ -3,6 +3,7 @@ import type { PageLoad } from './$types';
 import groq from 'groq';
 import { client } from '$lib/utils/sanity';
 import { localizedSlugs } from '$lib/stores/stores';
+import { languages } from '$lib/i18n/languages';
 import { browser } from '$app/environment';
 
 export const ssr = false;
@@ -17,11 +18,8 @@ export const load: PageLoad = async () => {
 			throw error(404, 'Not found');
 		}
 
-		const otherLang = ['en', 'fr', 'es', 'pt'];
-
-		console.log('otherlang', otherLang);
 		const localizedSlugsData = {};
-		otherLang.forEach((item) => {
+		languages.forEach((item) => {
 			localizedSlugsData[item] = ``;
 		});
 
@@ -30,7 +28,7 @@ export const load: PageLoad = async () => {
 			localizedSlugs.set(localizedSlugsData);
 		}
 
-		return { posts }; // Include posts in the props as an array
+		return { posts };
 	} catch (err) {
 		throw error(500, 'Internal Server Error');
 	}

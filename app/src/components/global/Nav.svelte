@@ -5,11 +5,18 @@
 	let lang;
 	let LINKS = [];
 
+	const about = {
+		en: 'about',
+		es: 'sobre',
+		fr: 'a-propos',
+		pt: 'sobre-nos'
+	};
+
 	$: {
 		const lang = $page.params.lang || 'en';
 		LINKS = [
 			{ name: 'Home', href: `/${lang}` },
-			{ name: 'About', href: `/${lang}/about` },
+			{ name: 'About', href: `/${lang}/${about[lang]}` },
 			{ name: 'Blog', href: `/${lang}/blogs` }
 		];
 	}
