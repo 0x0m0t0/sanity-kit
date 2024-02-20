@@ -11,6 +11,8 @@
 
 	// Function to switch the language
 	function switchLanguage(lang) {
+		document.cookie = `lang=${lang}; path=/`;
+
 		// Get the localized slug for the new language
 		const slug = $localizedSlugs[lang];
 
