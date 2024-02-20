@@ -9,24 +9,29 @@
 
 	let currentLang = $page.params.lang || 'en';
 
+	let switching = false;
+
 	// Function to switch the language
-	function switchLanguage(lang) {
-		document.cookie = `lang=${lang}; path=/`;
+	async function switchLanguage(lang) {
+		if (switching) return;
+		switching = true;
 
 		// Get the localized slug for the new language
 		const slug = $localizedSlugs[lang];
 
 		// Navigate to the new URL
 		if (slug) {
-			goto('/' + lang + slug);
+			await goto('/' + lang + slug);
 		} else {
-			goto('/' + lang);
+			await goto('/' + lang);
 		}
+
+		switching = false;
 	}
 </script>
 
 <div class="flex flex-col">
-	<select
+	<!-- <select
 		{id}
 		bind:value={currentLang}
 		{disabled}
@@ -37,7 +42,14 @@
 		{#each languages as lang}
 			<option value={lang}>{lang}</option>
 		{/each}
-	</select>
+	</select> -->
+	<div>
+		{#each languages as lang}
+			<button id={`${id}-${lang}`} {disabled} on:click={() => switchLanguage(lang)} class="ml-5">
+				{lang}
+			</button>
+		{/each}
+	</div>
 </div>
 
 <style>
