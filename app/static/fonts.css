@@ -4,4 +4,5 @@
 	font-weight: 400;
 	src: url('/fonts/Inter-Regular.woff2'); /* IE9 Compat Modes */
 	src: local(''), /* IE6-IE8 */ url('/fonts/Inter-Regular.woff2') format('woff2');
+	/* font-display: swap; */
 }
