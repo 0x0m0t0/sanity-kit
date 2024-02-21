@@ -30,8 +30,8 @@
 	}
 </script>
 
-<div class="flex flex-col">
-	<!-- <select
+<!-- <div class="flex flex-col"> -->
+<!-- <select
 		{id}
 		bind:value={currentLang}
 		{disabled}
@@ -43,14 +43,20 @@
 			<option value={lang}>{lang}</option>
 		{/each}
 	</select> -->
-	<div>
-		{#each languages as lang}
-			<button id={`${id}-${lang}`} {disabled} on:click={() => switchLanguage(lang)} class="ml-5">
-				{lang}
-			</button>
-		{/each}
-	</div>
+<div class="flex justify-center">
+	{#each languages as lang}
+		<button
+			id={`${id}-${lang}`}
+			{disabled}
+			on:click={() => switchLanguage(lang)}
+			class="text-sm mr-5 last:mr-0"
+		>
+			{lang}
+		</button>
+	{/each}
 </div>
+
+<!-- </div> -->
 
 <style>
 	select {

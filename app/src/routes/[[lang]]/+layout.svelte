@@ -2,9 +2,8 @@
 	import { fade } from 'svelte/transition';
 	import { slide } from 'svelte/transition';
 	import { fly } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
 
-	import '$src/tailwind.css';
+	import '../../tailwind.css';
 	import Nav from '$components/global/Nav.svelte';
 	import Footer from '$components/Footer.svelte';
 
