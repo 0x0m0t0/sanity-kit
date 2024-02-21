@@ -38,7 +38,7 @@ export const structure: StructureResolver = (
   context // !!! DEVCHECK
 ) =>
   S.list()
-    .title('Structure')
+    .title('Home')
     .items([
       S.divider(),
       works(S, context),
