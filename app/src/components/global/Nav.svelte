@@ -24,7 +24,7 @@
 
 <nav class="w-full flex justify-center" aria-label={'Primary navigation'}>
 	{#each LINKS as { name, href }, i}
-		<a {href} class="text-sm text-gray hover:text-blue hover:bg-gray mr-2 last:mr-0">{name}</a>
+		<a {href} class="text-sm text-dark-gray hover:text-blue-800 mr-2 last:mr-0">{name}</a>
 	{/each}
 
 	<LangSwitch />

@@ -20,11 +20,11 @@
 	{/if}
 
 	<div class="card__container">
-		<h3 class="card__title">
+		<h2 class="card__title">
 			<a class="card__link" href={`${lang}/post/${post.slug.current}`}>
 				{post.title}
 			</a>
-		</h3>
+		</h2>
 		<p class="card__excerpt">{post.excerpt}</p>
 		<p class="card__date">
 			{formatDate(post._createdAt)}
