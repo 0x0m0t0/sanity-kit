@@ -3,12 +3,12 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-
-	console.log('main', data.posts[0].mainImage);
 </script>
 
 <svelte:head>
-	<link rel="preload" as="image" href={data.posts[0].mainImage} />
+	{#if data.posts.length && data.posts[0].mainImage}
+		<link rel="preload" as="image" href={data.posts[0].mainImage} />
+	{/if}
 </svelte:head>
 
 <section>
