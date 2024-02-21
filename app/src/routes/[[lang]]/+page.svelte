@@ -3,7 +3,13 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+
+	console.log('main', data.posts[0].mainImage);
 </script>
+
+<svelte:head>
+	<link rel="preload" as="image" href={data.posts[0].mainImage} />
+</svelte:head>
 
 <section>
 	<h1 class="sr-only">Home</h1>
