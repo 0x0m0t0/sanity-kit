@@ -8,6 +8,10 @@
 	export let post: Post;
 </script>
 
+<svelte:head>
+	<link rel="preload" as="image" href={urlFor(post.mainImage).width(500).height(300).url()} />
+</svelte:head>
+
 <div class="card">
 	{#if post.mainImage}
 		<img
