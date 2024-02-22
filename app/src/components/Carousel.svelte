@@ -113,7 +113,7 @@
 <div id="my-keen-slider" class="keen-slider">
 	{#each images as image}
 		<div class="keen-slider__slide">
-			<ResImage {image} sizes={'33vw'} alt={image.caption ? image.caption : 'Cover image'} />
+			<ResImage src={image} sizes={'33vw'} alt={image.caption ? image.caption : 'Cover image'} />
 		</div>
 	{/each}
 </div>

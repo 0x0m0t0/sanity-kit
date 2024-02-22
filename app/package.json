@@ -16,8 +16,10 @@
 		"@sanity/image-url": "^1.0.2",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
 		"@tylermcrobert/svelte-sanity-image": "^0.2.6",
+		"@unpic/svelte": "^0.0.51",
 		"groq": "^3.29.1",
-		"keen-slider": "^6.8.6"
+		"keen-slider": "^6.8.6",
+		"unpic": "^3.17.0"
 	},
 	"devDependencies": {
 		"@portabletext/svelte": "^2.1.5",
