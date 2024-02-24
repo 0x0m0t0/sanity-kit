@@ -1,9 +1,11 @@
 import {defineField, defineType} from 'sanity'
+import {GROUPS} from './../constants'
 
 export default defineField({
   name: 'about',
   title: 'About',
   type: 'document',
+  groups: GROUPS,
   fields: [
     defineField({
       name: 'language',
@@ -30,6 +32,13 @@ export default defineField({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
+    }),
+    // SEO
+    defineField({
+      name: 'meta',
+      title: 'Meta',
+      type: 'metaCard',
+      group: 'seo',
     }),
     // !!! FORDEV
     // defineField({

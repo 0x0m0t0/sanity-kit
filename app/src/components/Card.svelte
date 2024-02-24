@@ -3,6 +3,7 @@
 	import { formatDate } from '$lib/utils';
 	import { urlFor } from '$lib/utils/image';
 	import type { Post } from '$lib/utils/sanity';
+	import { transformUrl } from 'unpic';
 
 	$: lang = $page.params.lang || 'en';
 	export let post: Post;

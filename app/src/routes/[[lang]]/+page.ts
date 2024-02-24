@@ -6,7 +6,7 @@ import { localizedSlugs } from '$lib/stores/stores';
 import { languages } from '$lib/i18n/languages';
 import { browser } from '$app/environment';
 
-export const ssr = false;
+// export const ssr = false;
 
 const QUERY = groq`*[_type == "work" && defined(slug.current)] | order(orderRank) `;
 

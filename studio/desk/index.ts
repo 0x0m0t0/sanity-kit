@@ -2,6 +2,7 @@ import {ListItemBuilder, StructureResolver} from 'sanity/desk'
 import works from './structure/works/works'
 import blogs from './structure/blog/blog'
 import about from './structure/about/about'
+import home from './structure/home'
 
 // If you add document types to desk structure manually, you can add them to this function to prevent duplicates in the root pane
 const hiddenDocTypes = (listItem: ListItemBuilder) => {
@@ -13,7 +14,7 @@ const hiddenDocTypes = (listItem: ListItemBuilder) => {
 
   return ![
     // Singletons
-    // 'home',
+    'home',
     // 'exploration',
     // 'settings',
     'about',
@@ -40,6 +41,7 @@ export const structure: StructureResolver = (
   S.list()
     .title('Home')
     .items([
+      home(S, context),
       S.divider(),
       works(S, context),
       blogs(S, context),

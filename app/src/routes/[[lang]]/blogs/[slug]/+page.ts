@@ -5,7 +5,7 @@ import { client } from '$lib/utils/sanity';
 import { localizedSlugs } from '$lib/stores/stores';
 import { browser } from '$app/environment';
 
-export const ssr = false;
+// export const ssr = false;
 
 export const load: PageLoad = async ({ params: { lang, slug } }) => {
 	try {
