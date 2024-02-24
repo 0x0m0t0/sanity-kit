@@ -5,7 +5,7 @@ import { languages } from '$lib/i18n/languages';
 import { browser } from '$app/environment';
 import { getPost } from '$lib/utils/sanity';
 
-export const ssr = false;
+// export const ssr = false;
 
 export const load: PageLoad = async ({ params: { lang, slug } }) => {
 	try {
