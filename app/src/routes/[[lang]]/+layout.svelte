@@ -21,12 +21,12 @@
 
   <svelte:head>
 	<title>Portfolio i18n</title>
-	</svelte:head>
+</svelte:head>
 
   <SvelteSeo
 	title={SITE_NAME}
 	description={description}
-	canonical={CANONICAL}
+	canonical={CANONICAL + data.pathname}
 	keywords="portfolio, photography, design"
 	openGraph={{
 	  title: {SITE_NAME},

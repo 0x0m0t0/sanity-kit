@@ -1,2 +1,2 @@
 export const SITE_NAME = 'Portfolio';
-export const CANONICAL = 'sanity-kit.pages.dev';
+export const CANONICAL = 'https://sanity-kit.pages.dev';
