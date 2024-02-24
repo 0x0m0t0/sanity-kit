@@ -1,9 +1,11 @@
 import {defineField, defineType} from 'sanity'
+import {GROUPS} from './../constants'
 
 export default defineField({
   name: 'work',
   title: 'Work',
   type: 'document',
+  groups: GROUPS,
   fields: [
     defineField({
       name: 'orderRank',
@@ -77,6 +79,13 @@ export default defineField({
         },
       ],
       validation: (Rule) => Rule.required().min(1),
+    }),
+    // SEO
+    defineField({
+      name: 'meta',
+      title: 'Meta',
+      type: 'metaCard',
+      group: 'seo',
     }),
   ],
   preview: {
