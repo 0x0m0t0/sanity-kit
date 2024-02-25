@@ -3,12 +3,12 @@
 	import { formatDate } from '$lib/utils';
 	import { urlFor } from '$lib/utils/image';
 	import type { Post } from '$lib/utils/sanity';
-	import { transformUrl } from 'unpic';
 
 	$: lang = $page.params.lang || 'en';
 	export let post: Post;
 </script>
 
+<a class="card__link" href={`${lang}/work/${post.slug.current}`}>
 <div class="card">
 	{#if post.mainImage}
 		<img
@@ -22,9 +22,9 @@
 
 	<div class="card__container">
 		<h2 class="card__title">
-			<a class="card__link" href={`${lang}/post/${post.slug.current}`}>
+			
 				{post.title}
-			</a>
+		
 		</h2>
 		<p class="card__excerpt">{post.excerpt}</p>
 		<p class="card__date">
@@ -32,3 +32,4 @@
 		</p>
 	</div>
 </div>
+</a>

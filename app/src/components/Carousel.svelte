@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy} from 'svelte';
 
-	import 'keen-slider/keen-slider.min.css';
+	import { page } from '$app/stores';
 	import KeenSlider from 'keen-slider';
 	import ResImage from './ResImage.svelte';
 
@@ -9,8 +9,9 @@
 
 	let slider: any;
 
-	onMount(() => {
-		function WheelControls(slider) {
+	let isSliderInitialized = false;
+
+	function WheelControls(slider) {
 			var touchTimeout;
 			var position;
 			var wheelActive;
@@ -83,7 +84,7 @@
 			});
 		}
 
-		const slideToClicked = (slider) => {
+	const slideToClicked = (slider) => {
 			slider.on('created', () => {
 				slider.slides.forEach((element, idx) => {
 					element.addEventListener('click', () => {
@@ -93,7 +94,9 @@
 				});
 			});
 		};
-
+		let url :string;
+	onMount(() => {
+		url = $page.params.slug
 		slider = new KeenSlider(
 			'#my-keen-slider',
 			{
@@ -107,15 +110,82 @@
 			},
 			[slideToClicked, WheelControls]
 		);
+		isSliderInitialized = true;
+
 	});
+
+	onDestroy(() => {
+
+ if (slider && url !== $page.params.slug) {
+	slider.destroy();
+ }
+		if (slider && url == $page.params.slug) {
+			slider.destroy();
+				slider = new KeenSlider(
+    '#my-keen-slider',
+    {
+      loop: true,
+      mode: 'free-snap',
+      slides: {
+        perView: 3,
+        origin: 'center',
+        spacing: 15
+      }
+    },
+    [slideToClicked, WheelControls]
+  );
+		}
+	});
+
+
+
+
 </script>
 
-<div id="my-keen-slider" class="keen-slider">
+<div id="my-keen-slider" class="keen-slider" class:initialized={isSliderInitialized}>
 	{#each images as image}
-		<div class="keen-slider__slide">
-			<ResImage src={image} sizes={'33vw'} alt={image.caption ? image.caption : 'Cover image'} />
+		<div class="keen-slider__slide w-[33vw] cursor-pointer">
+			<ResImage {image} sizes={'33vw'} alt={image.caption ? image.caption : 'Cover image'} />
 		</div>
 	{/each}
 </div>
+
+
+
+
+<style>
+
+.keen-slider:not(.initialized) {
+    visibility: hidden;
+  }
+
+.keen-slider:not([data-keen-slider-disabled]) {
+  align-content: flex-start;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+}
+.keen-slider:not([data-keen-slider-disabled]) .keen-slider__slide {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 100%;
+}
+.keen-slider:not([data-keen-slider-disabled])[data-keen-slider-reverse] {
+  flex-direction: row-reverse;
+}
+.keen-slider:not([data-keen-slider-disabled])[data-keen-slider-v] {
+  flex-wrap: wrap;
+}
+</style>
 
 <!-- sizes={'(max-width: 600px) 480px, 80vw'} -->

@@ -25,7 +25,7 @@ export const load: PageLoad = async ({ params: { lang, slug } }) => {
 			{ lang, slug }
 		);
 
-		console.log('posts', post);
+		// console.log('posts', post);
 
 		if (!post) {
 			throw error(404, 'Not found');

@@ -13,10 +13,10 @@ export const load: PageLoad = async ({ params: { lang, slug } }) => {
 		if (!post) {
 			throw error(404, 'Not found');
 		}
-		console.log('slug', slug);
+		// console.log('slug', slug);
 		const localizedSlugsData = {};
 		languages.forEach((item) => {
-			localizedSlugsData[item] = `/post/${slug}`;
+			localizedSlugsData[item] = `/work/${slug}`;
 		});
 
 		const finalPost = { ...post, localizedSlugs: localizedSlugsData };
