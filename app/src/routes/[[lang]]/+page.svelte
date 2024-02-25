@@ -5,6 +5,8 @@
 	export let data: PageData;
 </script>
 
+
+
 <section>
 	<h1 class="sr-only">Home</h1>
 	{#if data.posts.length}

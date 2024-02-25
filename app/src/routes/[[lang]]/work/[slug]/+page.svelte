@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { PortableText } from '@portabletext/svelte';
+
 	import { formatDate } from '$lib/utils';
-	import { urlFor } from '$lib/utils/image';
 	import Carousel from '$components/Carousel.svelte';
-	import ResImage from '$components/ResImage.svelte';
+
 	import type { PageData } from './$types';
 
 	export let data: PageData;
