@@ -18,9 +18,9 @@ export const load: PageLoad = async () => {
 			throw error(404, 'Not found');
 		}
 
-		const localizedSlugsData = {};
-		languages.forEach((item) => {
-			localizedSlugsData[item] = ``;
+		const localizedSlugsData: Record<string, string> = {};
+		languages.forEach((item: string) => {
+			localizedSlugsData[item] = '';
 		});
 
 		// Update the localizedSlugs store on the client
