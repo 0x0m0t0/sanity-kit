@@ -27,7 +27,7 @@ export default function CustomInput({
       {props.maxLength && (
         <Inline space={1}>
           <Badge mode="outline" tone={props.tone}>
-            {props.tone === 'caution' ? 'Optional' : 'Required'}
+            {props.tone === 'caution' ? 'Facultatif' : 'Obligatoire'}
           </Badge>
           <Badge mode="outline" tone={props.tone}>
             {props.value?.length || 0} / {props.maxLength}

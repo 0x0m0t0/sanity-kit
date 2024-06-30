@@ -29,24 +29,24 @@ export default defineStructure((S, context) =>
                       language: language.id,
                     }),
                   ])
-                  .canHandleIntent((intentName, params) => {
-                    // TODO: Handle **existing** documents (like search results when clicked)
-                    // to return `true` on the correct language list!
-                    if (intentName === 'edit') {
-                      // return params?.language === language.id
-                      return false
-                    }
+                // .canHandleIntent((intentName, params) => {
+                //   // TODO: Handle **existing** documents (like search results when clicked)
+                //   // to return `true` on the correct language list!
+                //   if (intentName === 'edit') {
+                //     // return params?.language === language.id
+                //     return false
+                //   }
 
-                    // Not an initial value template
-                    if (!params.template) {
-                      return true
-                    }
+                //   // Not an initial value template
+                //   if (!params.template) {
+                //     return true
+                //   }
 
-                    // Template name structure example: "lesson-en"
-                    const languageValue = params?.template?.split(`-`).pop()
+                //   // Template name structure example: "lesson-en"
+                //   const languageValue = params?.template?.split(`-`).pop()
 
-                    return languageValue === language.id
-                  })
+                //   return languageValue === language.id
+                // })
               )
           ),
           // I have only added this item so that search results when clicked will load this list
@@ -62,11 +62,11 @@ export default defineStructure((S, context) =>
                 .title(`All ${TITLE}`)
                 .schemaType(ID)
                 .filter(`_type == "${ID}"`)
-                // Load this pane for existing `lesson` documents
-                // or new documents that aren't using an initial value template
-                .canHandleIntent(
-                  (intentName, params) => intentName === 'edit' || params.template === `${ID}`
-                )
+              // Load this pane for existing `lesson` documents
+              // or new documents that aren't using an initial value template
+              // .canHandleIntent(
+              //   (intentName, params) => intentName === 'edit' || params.template === `${ID}`
+              // )
             ),
         ])
     )

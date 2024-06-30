@@ -1,6 +1,6 @@
 // import {BsCardHeading, BsImages, BsSpeedometer2} from 'react-icons/bs' // !!! TODODEV lucide-icons
 
-export const BASE_URL = 'localhost' // to be replaced by actual base URL
+export const BASE_URL = 'kit.pages.dev' // to be replaced by actual base URL
 
 export const GROUPS = [
   {

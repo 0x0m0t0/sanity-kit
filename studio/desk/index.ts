@@ -3,6 +3,7 @@ import works from './structure/works/works'
 import blogs from './structure/blog/blog'
 import about from './structure/about/about'
 import home from './structure/home'
+import legal from './structure/legal/legal'
 
 // If you add document types to desk structure manually, you can add them to this function to prevent duplicates in the root pane
 const hiddenDocTypes = (listItem: ListItemBuilder) => {
@@ -26,6 +27,7 @@ const hiddenDocTypes = (listItem: ListItemBuilder) => {
     // Documents
     'work',
     'blog',
+    'legal',
     // 'service',
     // 'client',
     // Media tag
@@ -47,5 +49,6 @@ export const structure: StructureResolver = (
       blogs(S, context),
       about(S, context),
       S.divider(),
+      legal(S, context),
       ...S.documentTypeListItems().filter(hiddenDocTypes),
     ])
