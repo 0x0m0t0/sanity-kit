@@ -24,11 +24,11 @@ export default defineConfig({
     media(),
     documentInternationalization({
       supportedLanguages: i18n.languages,
-      schemaTypes: ['blog', 'about'],
+      schemaTypes: ['blog', 'about', 'legal'],
     }),
     // !!! FORDEV
     schemaVisualizer({
-      defaultSchemaTypes: ['work', 'blog', 'about'],
+      defaultSchemaTypes: ['work', 'blog', 'about', 'legal'],
       hiddenSchemaTypes: ['translation.metadata'],
     }),
   ],
